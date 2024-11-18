@@ -348,7 +348,7 @@ namespace Tello {
     //% group="応用"
     export function xyz(x: number, y: number, z: number, speed: number): void {
         if (flying == 1 && command_enable == 1) {
-            let sendstring = "go=" + x + "=" + z + "=" + y + "=" + speed
+            let sendstring = "go=" + x + " " + z + " " + y + " " + speed
             radio.sendString(sendstring)
             command_enable = 0
         }
