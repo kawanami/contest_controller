@@ -111,6 +111,9 @@ namespace Tello {
     //% group="基本"
     export function down(value: number): void {
         if (flying == 1 && command_enable == 1) {
+            if (value < 20) {
+                value = 20
+            }
             radio.sendString("down=" + value)
             flying = 1
             command_enable = 0
@@ -127,6 +130,9 @@ namespace Tello {
     //% group="基本"
     export function up(value: number): void {
         if (flying == 1 && command_enable == 1) {
+            if (value < 20) {
+                value = 20
+            }
             radio.sendString("up=" + value)
             flying = 1
             command_enable = 0
@@ -142,6 +148,9 @@ namespace Tello {
     //% group="基本"
     export function left(value: number): void {
         if (flying == 1 && command_enable == 1) {
+            if (value < 20) {
+                value = 20
+            }
             radio.sendString("left=" + value)
             flying = 1
             command_enable = 0
@@ -157,6 +166,9 @@ namespace Tello {
     //% group="基本"
     export function right(value: number): void {
         if (flying == 1 && command_enable == 1) {
+            if (value < 20) {
+                value = 20
+            }
             radio.sendString("right=" + value)
             flying = 1
             command_enable = 0
@@ -172,6 +184,9 @@ namespace Tello {
     //% group="基本"
     export function back(value: number): void {
         if (flying == 1 && command_enable == 1) {
+            if (value < 20) {
+                value = 20
+            }
             radio.sendString("back=" + value)
             flying = 1
             command_enable = 0
@@ -187,6 +202,9 @@ namespace Tello {
     //% group="基本"
     export function forward(value: number): void {
         if (flying == 1 && command_enable == 1) {
+            if (value < 20) {
+                value = 20
+            }
             radio.sendString("forward=" + value)
             flying = 1
             command_enable = 0
