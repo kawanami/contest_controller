@@ -33,23 +33,12 @@ enum MyEnumZ {
 
 
 namespace Tello {
-    /**
-     * 通信グループの設定を行う．受信機と送信機のグループ設定は合わせてね
-     * @param 通信グループの番号 value 1-100, eg: 1
-     */
-    //% block="無線グループの設定を行う %value"
-    //% group="設定"
-    export function radiosetgroup(value: number): void {
-        radio.setGroup(value)
-        radio.setFrequencyBand(value % 84)
-        radio.setTransmitPower(7)
-    }
 
     /**
      * スピードの設定を行う、20~50の間で設定する、1につき1cm進む！
      * @param スピードの設定を行う value 20-50, eg: 10
      */
-    //% block="スピードを設定する(20~50まで:初期値は30) %value"
+    //% block="スピードを設定する(20-50:初期値は30) %value"
     //% group="設定"
     export function Setspped(value: number): void {
         if (value > 50) {
@@ -61,7 +50,7 @@ namespace Tello {
     /**
      * 送信間隔の設定を行う、「ずっと」で使う、1000ミリ秒単位で固定
      */
-    //% block="送信間隔を設定する(1000ミリ秒)"
+    //% block="【ずっと】送信間隔を設定する(1000ミリ秒)"
     //% group="設定"
     export function Setorder(): void {
         if (command_enable == 0) {
@@ -71,11 +60,23 @@ namespace Tello {
     }
 
     /**
+     * 通信グループの設定を行う．受信機と送信機のグループ設定は合わせてね
+     * @param 通信グループの番号 value 0-255, eg: 1
+    */
+    //% block="【最初だけ】無線グループの設定を行う %value"
+    //% group="設定"
+    export function radiosetgroup(value: number): void {
+        radio.setGroup(value)
+        radio.setFrequencyBand(value % 84)
+        radio.setTransmitPower(7)
+    }
+
+    /**
      * 受信機にドローンが反時計回りを行う命令を送信する．
      * その時，角度を設定し送信を行う．
      * @param value 反時計回りを行う角度を設定する(degrees counterclockwise) value 1-360, eg: 90
      */
-    //% block="反時計まわり %value"
+    //% block="反時計まわり(1-360) %value"
     //% group="基本"
     export function rotate_ccw(value: number): void {
         if (flying == 1 && command_enable == 1) {
@@ -90,7 +91,7 @@ namespace Tello {
      * その時，角度を設定し送信を行う．
      * @param value 時計回りを行う角度を設定する(degrees clockwise) value 1-360, eg: 90
      */
-    //% block="時計まわり %value"
+    //% block="時計まわり(1-360) %value"
     //% group="基本"
     export function rotate_cw(value: number): void {
         if (flying == 1 && command_enable == 1) {
@@ -106,7 +107,7 @@ namespace Tello {
      * その時，距離も設定し送信を行う．20-500cm．
      * @param value 下がる距離を設定する（cm） value 20-500, eg: 20
      */
-    //% block="下にいく %value"
+    //% block="下にいく(20-500) %value"
     //% group="基本"
     export function down(value: number): void {
         if (flying == 1 && command_enable == 1) {
@@ -122,7 +123,7 @@ namespace Tello {
      * その時，距離も設定し送信を行う．20-500cm．
      * @param value 上がる距離を設定する(cm) value 20-500, eg: 20
      */
-    //% block="上にいく %value"
+    //% block="上にいく(20-500) %value"
     //% group="基本"
     export function up(value: number): void {
         if (flying == 1 && command_enable == 1) {
@@ -137,7 +138,7 @@ namespace Tello {
      * その時，距離も設定し送信を行う．20-500cm．
      * @param value 左にすすむ距離を設定する（cm） value 20-500, eg: 50
      */
-    //% block="左にすすむ %value"
+    //% block="左にすすむ(20-500) %value"
     //% group="基本"
     export function left(value: number): void {
         if (flying == 1 && command_enable == 1) {
@@ -152,7 +153,7 @@ namespace Tello {
      * その時，距離も設定し送信を行う．20-500cm．
      * @param value 右にすすむ距離を設定する（cm） value 20-500, eg: 50
      */
-    //% block="右にすすむ %value"
+    //% block="右にすすむ(20-500) %value"
     //% group="基本"
     export function right(value: number): void {
         if (flying == 1 && command_enable == 1) {
@@ -167,7 +168,7 @@ namespace Tello {
      * その時，距離も設定し送信を行う．20-500cm．
      * @param value 後ろにすすむ距離を設定する（cm） value 20-500, eg: 50
      */
-    //% block="後ろにすすむ %value"
+    //% block="後ろにすすむ(20-500) %value"
     //% group="基本"
     export function back(value: number): void {
         if (flying == 1 && command_enable == 1) {
@@ -182,7 +183,7 @@ namespace Tello {
      * その時，距離も設定し送信を行う．20-500cm．
      * @param value 前に進む距離を設定する（cm） value 20-500, eg: 50
      */
-    //% block="前にすすむ %value"
+    //% block="前にすすむ(20-500) %value"
     //% group="基本"
     export function forward(value: number): void {
         if (flying == 1 && command_enable == 1) {
@@ -325,7 +326,7 @@ namespace Tello {
         * @param z z -500-500, eg: 0
         * @param speed speed 10-100, eg: 0
         */
-    //% block="自由飛行 | 前後（前が＋） %x 上下（上が＋） %y 左右（左が＋） %z speed %speed"
+    //% block="自由飛行(距離は±20以上) | 前後（前が＋） %x 上下（上が＋） %y 左右（左が＋） %z スピード(10以上) %speed"
     //% group="応用"
     export function xyz(x: number, y: number, z: number, speed: number): void {
         if (flying == 1 && command_enable == 1) {
